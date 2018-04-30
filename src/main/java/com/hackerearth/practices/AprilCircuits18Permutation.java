@@ -1,12 +1,15 @@
 package com.hackerearth.practices;
 
+import com.hackerearth.practices.util.ArrayUtil;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Given a permutation of 1 to n, you need to perform some operations to make it into increasing order. Each operation
- * is to reverse an interval a1, a2, a3,....ax(1<=x<=n)
+ * Given a permutation of 1 to n, you need to perform some operations to make it into increasing
+ * order. Each operation is to reverse an interval a1, a2, a3,....ax(1<=x<=n)
  *
  * <p>(a prefix). Your goal is to minimize the number of operations.
  *
@@ -25,9 +28,14 @@ import java.util.List;
  */
 public class AprilCircuits18Permutation {
 
-    public static void main(String[] args) throws Exception {
+    private static InputReader inputReader;
 
-        InputReader inputReader = new InputReader();
+    public AprilCircuits18Permutation(InputReader inputReader) {
+
+        AprilCircuits18Permutation.inputReader = inputReader;
+    }
+
+    public static int calculate() throws IOException {
 
         int sizeOfArray = inputReader.readNextInt();
         List<Integer> array = new ArrayList<>(1);
@@ -38,10 +46,10 @@ public class AprilCircuits18Permutation {
         }
 
         sizeOfArray = array.size();
-        findMinNumberOfOperations(array, sizeOfArray);
+        return findMinNumberOfOperations(array, sizeOfArray);
     }
 
-    private static void findMinNumberOfOperations(List<Integer> array, int sizeOfArray) {
+    private static int findMinNumberOfOperations(List<Integer> array, int sizeOfArray) {
 
         int count = 0;
         while (sizeOfArray > 1) {
@@ -52,33 +60,20 @@ public class AprilCircuits18Permutation {
                 List<Integer> subList = array.subList(startIndex, endIndex + 1);
                 Collections.reverse(subList);
                 count++;
-                if (isSorted(array)) {
+                if (ArrayUtil.isSorted(array)) {
 
                     break;
                 }
                 startIndex++;
                 endIndex++;
             }
-            if (isSorted(array)) {
+            if (ArrayUtil.isSorted(array)) {
 
                 break;
             }
             sizeOfArray--;
         }
 
-        System.out.println(count);
-    }
-
-    public static boolean isSorted(List<Integer> array) {
-
-        for (int i = 0; i < array.size() - 1; i++) {
-
-            if (array.get(i) > array.get(i + 1)) {
-
-                return false;
-            }
-        }
-
-        return true;
+        return count;
     }
 }

@@ -1,83 +1,97 @@
 package com.hackerearth.practices;
 
-/*
-Today, Monk went for a walk in a garden. There are many trees in the garden and each tree has an English alphabet on it. While Monk was walking, he noticed that all trees with vowels on it are not in good state. He decided to take care of them. So, he asked you to tell him the count of such trees in the garden.
-Note : The following letters are vowels: 'A', 'E', 'I', 'O', 'U' ,'a','e','i','o' and 'u'.
+import java.io.IOException;
 
-Input:
-The first line consists of an integer T denoting the number of test cases.
-Each test case consists of only one string, each character of string denoting the alphabet (may be lowercase or uppercase) on a tree in the garden.
-
-Output:
-For each test case, print the count in a new line.
-*/
-/* IMPORTANT: Multiple classes and nested static classes are supported */
-
-
-import java.io.PrintStream;
-
+/**
+ * Today, Monk went for a walk in a garden. There are many trees in the garden and each tree has an
+ * English alphabet on it. While Monk was walking, he noticed that all trees with vowels on it are
+ * not in good state. He decided to take care of them. So, he asked you to tell him the count of
+ * such trees in the garden. Note : The following letters are vowels: 'A', 'E', 'I', 'O', 'U'
+ * ,'a','e','i','o' and 'u'.
+ *
+ * <p>Input: The first line consists of an integer T denoting the number of test cases. Each test
+ * case consists of only one string, each character of string denoting the alphabet (may be
+ * lowercase or uppercase) on a tree in the garden.
+ *
+ * <p>Output: For each test case, print the count in a new line.
+ */
 class MonkTakesAWalk {
 
-    public static void main(String args[]) throws Exception {
+  private static InputReader inputReader;
+  private static OutputWriter outputWriter;
 
-        InputReader inputReader = new InputReader();
+  public MonkTakesAWalk(InputReader inputReader, OutputWriter outputWriter) {
 
-        PrintStream ps = new PrintStream(System.out);
-        int N = inputReader.readNextInt();
+    MonkTakesAWalk.inputReader = inputReader;
+    MonkTakesAWalk.outputWriter = outputWriter;
+  }
 
-        while (N-- > 0) {
-            int count = 0;
-            char ch = inputReader.readNextChar();
+  public static int calculate() throws IOException {
 
-            while (!inputReader.isWhiteSpace((int) ch)) {
+    int sizeOfArray = inputReader.readNextInt();
+    int count = -1;
+    while (sizeOfArray-- > 0) {
 
-                switch (ch) {
-                    case 'A':
-                        ++count;
-                        break;
+//    Read new line
+      inputReader.readNextChar();
+      count = -1;
+      char ch = inputReader.readNextChar();
 
-                    case 'E':
-                        ++count;
-                        break;
+      while (!inputReader.isWhiteSpace((int) ch)) {
 
-                    case 'I':
-                        ++count;
-                        break;
+        switch (ch) {
+          case 'A':
+            ++count;
+            break;
 
-                    case 'O':
-                        ++count;
-                        break;
+          case 'E':
+            ++count;
+            break;
 
-                    case 'U':
-                        ++count;
-                        break;
+          case 'I':
+            ++count;
+            break;
 
-                    case 'a':
-                        ++count;
-                        break;
+          case 'O':
+            ++count;
+            break;
 
-                    case 'e':
-                        ++count;
-                        break;
+          case 'U':
+            ++count;
+            break;
 
-                    case 'i':
-                        ++count;
-                        break;
+          case 'a':
+            ++count;
+            break;
 
-                    case 'o':
-                        ++count;
-                        break;
+          case 'e':
+            ++count;
+            break;
 
-                    case 'u':
-                        ++count;
-                        break;
-                }
+          case 'i':
+            ++count;
+            break;
 
-                ch = inputReader.readNextChar();
-            }
-            ps.println(count);
+          case 'o':
+            ++count;
+            break;
+
+          case 'u':
+            ++count;
+            break;
+          default:
+            break;
         }
-        ps.close();
 
+        ch = inputReader.readNextChar();
+      }
+
+      if (outputWriter != null && count > -1) {
+
+        outputWriter.println(count + 1);
+      }
     }
+
+    return count + 1;
+  }
 }

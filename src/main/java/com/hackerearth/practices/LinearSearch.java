@@ -1,13 +1,21 @@
 package com.hackerearth.practices;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LinearSearch {
 
-    public static void main(String[] args) throws Exception {
+    private final InputReader inputReader;
+    private final OutputWriter outputWriter;
 
-        InputReader inputReader = new InputReader();
+    public LinearSearch(InputReader inputReader, OutputWriter outputWriter) {
+
+        this.inputReader = inputReader;
+        this.outputWriter = outputWriter;
+    }
+
+    public int calculate() throws IOException {
 
         int sizeOfArray = inputReader.readNextInt();
         int searchInt = inputReader.readNextInt();
@@ -26,7 +34,12 @@ public class LinearSearch {
 
         if (lastIndex > -1) {
 
-            System.out.println(lastIndex);
+            if (outputWriter != null) {
+
+                outputWriter.println(lastIndex);
+            }
         }
+
+        return lastIndex;
     }
 }

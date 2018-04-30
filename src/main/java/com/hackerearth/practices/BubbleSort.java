@@ -1,5 +1,7 @@
 package com.hackerearth.practices;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,27 +59,30 @@ import java.util.List;
  * <p>Complexity: The complexity of bubble sort is O(n square) in both worst and average cases,
  * because the entire array needs to be iterated for every element.
  */
-public class BubbleSort {
+class BubbleSort {
 
-    public static void main(String[] args) throws Exception {
+    private final InputReader inputReader;
 
-        InputReader inputReader = new InputReader();
+    public BubbleSort(InputReader inputReader) {
+
+        this.inputReader = inputReader;
+    }
+
+    private static OutputWriter getOutputWriter() throws UnsupportedEncodingException {
+
+        return new OutputWriter();
+    }
+
+    List<Integer> calculate() throws IOException {
 
         int sizeOfArray = inputReader.readNextInt();
-        List<Integer> array = new ArrayList<>(1);
-
+        List<Integer> array = new ArrayList<>(sizeOfArray);
         while (sizeOfArray-- > 0) {
 
             array.add(inputReader.readNextInt());
         }
-
-        bubbleSort(array, array.size());
-    }
-
-    private static void bubbleSort(List<Integer> array, int sizeOfArray) {
-
-        //        PrintStream printStream = new PrintStream(System.out);
-        //        int count = 0;
+        sizeOfArray = array.size();
+        int count = 0;
 
         for (int k = 0; k < sizeOfArray - 1; k++) {
 
@@ -85,12 +90,13 @@ public class BubbleSort {
 
                 if (array.get(i) > array.get(i + 1)) {
 
-                    //                    ++count;
+                    ++count;
                     Collections.swap(array, i, i + 1);
                 }
             }
         }
 
-        //        printStream.println(count);
+        getOutputWriter().println(count);
+        return array;
     }
 }
