@@ -18,12 +18,6 @@
 		<!-- lookup parent from repository -->
 	</parent>
 
-	<modules>
-		<module>problems</module>
-		<module>employeeservice</module>
-		<module>explorecali</module>
-	</modules>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -33,20 +27,36 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<profiles>
 		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>problems</module>
+				<module>employeeservice</module>
+				<module>explorecali</module>
+			</modules>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<source>${java.version}</source>
+							<target>${java.version}</target>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
 			<id>spring</id>
+			<modules>
+				<module>employeeservice</module>
+				<module>explorecali</module>
+			</modules>
 			<build>
 				<plugins>
 					<plugin>
